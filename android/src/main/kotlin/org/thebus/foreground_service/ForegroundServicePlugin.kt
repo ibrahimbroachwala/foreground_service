@@ -599,7 +599,7 @@ class ForegroundServicePlugin: FlutterPlugin, MethodCallHandler, IntentService("
 
         val pendingIntent: PendingIntent =
                 Intent(Intent.ACTION_MAIN).let { notificationIntent ->
-                  PendingIntent.getActivity(myAppContext(), 0, notificationIntent, 0)
+                  PendingIntent.getActivity(myApplicationContextRef?.get(), 0, notificationIntent, 0)
                 }
 
         newBuilder

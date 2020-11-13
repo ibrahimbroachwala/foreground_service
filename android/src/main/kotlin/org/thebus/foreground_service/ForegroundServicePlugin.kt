@@ -597,11 +597,17 @@ class ForegroundServicePlugin: FlutterPlugin, MethodCallHandler, IntentService("
 
       try {
 
+        val pendingIntent: PendingIntent =
+                Intent(Intent.ACTION_MAIN).let { notificationIntent ->
+                  PendingIntent.getActivity(myAppContext(), 0, notificationIntent, 0)
+                }
+
         newBuilder
                 .setContentTitle("Foreground Service")
                 .setContentText("Running")
                 .setOngoing(true)
                 .setOnlyAlertOnce(false)
+                .setContentIntent(pendingIntent)
                 .setSmallIcon(getHardcodedIconResourceId())
 
         //the "normal" setPriority method will try to rebuild/renotify
